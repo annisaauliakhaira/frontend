@@ -1,0 +1,114 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : Aug 3, 2021, 11:14:01 AM
+    Author     : WahyuKu
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Roboto, sans-serif;
+    background-color: #edf2f4 !important;
+    overflow-x: hidden;
+}
+
+._wrapper {
+    min-height: 100vh;
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar {
+    height: 100%;
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    height: 10%;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo span {
+    font-family: Righteous, sans-serif;
+    font-weight: 500;
+    font-size: 2rem;
+    color: #fff;
+}
+
+.menu {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu .menu-list {
+    width: 100%;
+    list-style: none;
+}
+
+.menu .menu-list .menu-item {
+    padding: .75rem;
+    margin-right: .5rem;
+}
+
+.menu .menu-list .menu-item.active, .menu .menu-list .menu-item:hover {
+    border-right: 10px solid;
+    border-color: #ffb703;
+    background-color: #001d3d;
+}
+
+.menu .menu-list .menu-item .menu-link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.25rem;
+}
+
+.menu .menu-list .menu-item .menu-link i {
+    margin-right: 1rem;
+}
+
+.left-content {
+    min-height: 100vh;
+    width: 20%;
+    background-color: #1d3557;
+}
+
+.right-content {
+    min-height: 100vh;
+    width: 80%;
+}
+
+.right-content .header {
+    height: 10%;
+    background-color: #353535;
+}
+
+.right-content .main {
+    height: 80%;
+}
+
+.right-content .footer {
+    height: 10%;
+    background-color: #f8f9fa;
+}
+
+@media(max-width: 768px) {
+    .right-content {
+        width: 100%;
+    }
+
+    .left-content {
+        display: none;
+    }
+}

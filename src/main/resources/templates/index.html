@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+<head th:include="_layout :: head_layout">
+    <title id="title">MCC 53 Official Web - Dashboard</title>
+<!--    <link href="/css/dashboard.css" rel="stylesheet">-->
+</head>
+<body>
+<div class="_wrapper" th:replace = "_layout :: main_layout">
+    <div class="card" id="main">
+        <div class="card-header">
+            <h3>Dashboard</h3>
+        </div>
+        <div class="card-body">
+            <h1>Content</h1>
+        </div>
+    </div>
+</div>
+
+<div th:replace="_layout :: script">
+    <script src="/js/main.js"></script>
+</div>
+</body>
+</html>

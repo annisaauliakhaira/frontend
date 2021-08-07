@@ -1,22 +1,19 @@
 package com.mcc53.client.app.models;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class Employee {
+public class EmployeeCreate {
     private Long id;
     private String firstName;
     private String lastName;
     private String email;
     private String address;
-    private Department department;
-    private User user;
-
+    private Long department_id;
+    private String username;
+    private String password;
 }

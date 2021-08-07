@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Detail</title>
+</head>
+<body>
+  <h2 align="center">Employee Get By ID</h2>
+  <table border="2" align="center">
+    <tr>
+      <td bgcolor="#a9a9a9">Employee Id</td>
+      <td th:text="${employee.id}"></td>
+    </tr>
+    <tr>
+      <td bgcolor="#a9a9a9">First Name</td>
+      <td th:text="${employee.firstName}"></td>
+    </tr>
+    <tr>
+      <td  bgcolor="#a9a9a9">Last Name</td>
+      <td th:text="${employee.lastName}"></td>
+    </tr>
+    <tr>
+      <td bgcolor="#a9a9a9">Address</td>
+      <td th:text="${employee.address}"></td>
+    </tr>
+    <tr>
+      <td bgcolor="#a9a9a9">Email</td>
+      <td th:text="${employee.email}"></td>
+    </tr>
+    <tr>
+      <td bgcolor="#a9a9a9">Department</td>
+      <td th:text="${employee.department.name}"></td>
+    </tr>
+    <tr>
+      <td bgcolor="#a9a9a9">Username</td>
+      <td th:text="${employee.user.username}"></td>
+    </tr>
+  </table>
+</body>
+</html>
