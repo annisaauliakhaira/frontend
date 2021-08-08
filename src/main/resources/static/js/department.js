@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 var department = {};
 var depId;
@@ -28,8 +23,9 @@ $(document).ready(function () {
                 "render": function ( data, type, row, meta ) {
                     return `
               <div class="d-flex justify-content-center">
-                  <a href="#" onclick="edit(${data})"><i class="fas fa-edit"></i></a> | 
-                  <a href="#" onclick="deleteById(${data})"><i class="fas fa-trash-alt"></i></a> 
+                  <a class = "btn btn-info btn-sm" type="button" href="#" onclick="detail(${data})"><i class="fas fa-eye"></i></a> | 
+                  <a class = "btn btn-warning btn-sm" type="button" href="#" onclick="edit(${data})"><i class="fas fa-edit"></i></a> | 
+                  <a class = "btn btn-danger btn-sm" type="button" href="#" onclick="deleteById(${data})"><i class="fas fa-trash-alt"></i></a> 
               </div>
             `;
                 }
@@ -41,12 +37,13 @@ $(document).ready(function () {
 
 function detail(id) {
     getById(id);
+    $('#departmentModal').modal('show');
     disabledForm(true);
 }
 
 function getById(id) {
     $.ajax({
-        url: `/department/${id}`,
+        url: `http://localhost:8081/department/${id}`,
         dataType: 'json',
         success: (data) => {
             depId = id;
@@ -71,7 +68,7 @@ function submit() {
             if(depId){
                 $.ajax({
                     type: "PUT",
-                    url: `http://localhost:8081/department/${depId}` ,
+                    url: `http://localhost:8081/department/${depId}`,
                     contentType: 'application/json',
                     data: JSON.stringify(department),
                     dataType: 'json',
@@ -86,10 +83,9 @@ function submit() {
                     }
                 });
             }else{
-                var _this = this;
                 $.ajax({
                     type: "POST",
-                    url: `/department/create`,
+                    url: `http://localhost:8081/department`,
                     contentType: 'application/json',
                     data: JSON.stringify(department),
                     dataType: 'json',
@@ -100,7 +96,6 @@ function submit() {
                 });
             }
             $('.modal').modal('hide');
-            // setInterval('refreshPage()', 1000);
         }else{
             e.preventDefault();
             $('.needs-validation').addClass('was-validated')
@@ -121,7 +116,7 @@ function deleteById(id) {
     question("Do you want to delete this department?", "department deleted", "Delete", () => {
         $.ajax({
             type: "DELETE",
-            url: `/department/${id}`,
+            url: `http://localhost:8081/department/${id}`,
             contentType: 'application/json',
             data: department,
             success: (data) => {

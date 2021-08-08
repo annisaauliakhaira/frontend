@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 
 @Data
 @AllArgsConstructor
@@ -18,5 +20,6 @@ public class Employee {
     private String address;
     private Department department;
     private User user;
+    private List<Project> projects;
 
 }
