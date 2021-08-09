@@ -61,7 +61,7 @@ $(document).ready(function () {
               <div class="d-flex justify-content-center">
                   <a class = "btn btn-info btn-sm" type="button" href="#" onclick=""><i class="fas fa-eye"></i></a> | 
                   <a class = "btn btn-warning btn-sm" type="button" href="#" onclick=""><i class="fas fa-edit"></i></a> | 
-                  <a class = "btn btn-danger btn-sm" type="button" href="#" onclick=""><i class="fas fa-trash-alt"></i></a> 
+                  <a class = "btn btn-danger btn-sm" type="button" href="#" onclick="deleteById(${data})"><i class="fas fa-trash-alt"></i></a> 
               </div>
             `;
                 }
@@ -70,3 +70,22 @@ $(document).ready(function () {
     });
     submit();
 });
+
+function deleteById(id) {
+    question("Do you want to delete this employee?", "employee deleted", "Delete", () => {
+        $.ajax({
+            type: "DELETE",
+            url: `http://localhost:8081/employee/${id}`,
+            contentType: 'application/json',
+            data: department,
+            success: (data) => {
+                success('employee deleted');
+                $('#table_employee').DataTable().ajax.reload(null, false);
+            },
+            error: function (request, error) {
+                console.log(arguments);
+                alert(" Can't do because: " + error);
+            }
+        });
+    });
+}
