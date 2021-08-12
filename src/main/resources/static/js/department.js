@@ -3,9 +3,9 @@ var department = {};
 var depId;
 
 $(document).ready(function () {
-    var table= $('#table_department').DataTable({
+    $('#table_department').DataTable({
         ajax : {
-            url : 'http://localhost:8081/department',
+            url : 'department/get-all',
             dataSrc : ''
         },
         "columns": [
@@ -60,6 +60,12 @@ function create() {
     disabledForm(false);
 }
 
+function edit(id) {
+    getById(id);
+    $('#departmentModal').modal('show');
+    disabledForm(false);
+}
+
 function submit() {
     $('form').submit((e) => {
         e.preventDefault();
@@ -102,14 +108,8 @@ function submit() {
         }
     })
 }
-
 function setValue() {
     department.name = $('#name_dept').val();
-}
-function edit(id) {
-    getById(id);
-    $('#departmentModal').modal('show');
-    disabledForm(false);
 }
 
 function deleteById(id) {

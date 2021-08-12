@@ -1,8 +1,9 @@
 var employee = {};
+var department = {};
 var empId;
 
 $(document).ready(function () {
-    var table= $('#table_employee').DataTable({
+    $('#table_employee').DataTable({
         ajax : {
             url : 'http://localhost:8081/employee',
             dataSrc : ''
@@ -13,12 +14,11 @@ $(document).ready(function () {
                 "data": "id"
             },
             {
-                "name": "First Name",
-                "data": "firstName"
-            },
-            {
-                "name": "Last Name",
-                "data": "lastName"
+                "name": "Name",
+                "data": null,
+                render : function (data, type, row){
+                    return row.firstName + ' ' + row.lastName;
+                }
             },
             {
                 "name": "Email",
@@ -48,7 +48,7 @@ $(document).ready(function () {
                 render : function(data, type, row) {
                     var result = "";
                     row.projects.forEach((data, index) => {
-                        result += index==1 ?  data.name : ' | '+data.name+' | ';
+                        result += index==1 +'<br>' ?  data.name : '<span class="center">'+data.name+'<span class="center">'+'<br>';
                     });
                     return result;
                 }
@@ -68,8 +68,25 @@ $(document).ready(function () {
             }
         ]
     });
-    submit();
 });
+
+function detail(id) {
+    getById(id);
+    $('#employeeModal').modal('show');
+    disabledForm(true);
+}
+
+function getById(id) {
+    $.ajax({
+        url: `http://localhost:8081/employee/${id}`,
+        dataType: 'json',
+        success: (data) => {
+            empId = id;
+            employee.firstName = data.firstName;
+            setForm();
+        }
+    });
+}
 
 function deleteById(id) {
     question("Do you want to delete this employee?", "employee deleted", "Delete", () => {
@@ -77,8 +94,9 @@ function deleteById(id) {
             type: "DELETE",
             url: `http://localhost:8081/employee/${id}`,
             contentType: 'application/json',
-            data: department,
+            data: employee,
             success: (data) => {
+                $('.modal').modal('hide');
                 success('employee deleted');
                 $('#table_employee').DataTable().ajax.reload(null, false);
             },
@@ -88,4 +106,21 @@ function deleteById(id) {
             }
         });
     });
+}
+
+function setValue() {
+    department.name = $('#name_dept').val();
+}
+
+function setForm() {
+    $('#first_name').val(employee.firstName);
+    $('#last_name').val(employee.lastName);
+    $('#email').val(employee.email);
+    $('#address').val(employee.address);
+    $('#departmentSelect').val(employee.address);
+}
+
+function disabledForm(isDisable) {
+    $('#name_dept').prop('disabled', isDisable);
+    $('#submitButton').prop('disabled', isDisable);
 }
