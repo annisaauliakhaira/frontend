@@ -121,6 +121,10 @@ function setForm() {
 }
 
 function disabledForm(isDisable) {
+    $('#first_name').prop('disabled', isDisable);
+    $('#last_name').prop('disabled', isDisable);
+    $('#email').prop('disabled', isDisable);
+    $('#address').prop('disabled', isDisable);
     $('#name_dept').prop('disabled', isDisable);
     $('#submitButton').prop('disabled', isDisable);
 }

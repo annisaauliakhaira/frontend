@@ -6,6 +6,7 @@ import com.mcc53.client.app.services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +22,8 @@ public class LoginController {
     }
 
     @GetMapping
-    public String indexLogin(Model model){
-        model.addAttribute("login", new Login());
+    public String indexLogin(){
+//        model.addAttribute("login", new Login());
         return "/login";
     }
 
@@ -34,6 +35,7 @@ public class LoginController {
 
     @PostMapping
     public @ResponseBody AuthResponse postLogin(@RequestBody Login login){
+        System.out.println(SecurityContextHolder.getContext().getAuthentication());
         return loginService.loginRequest(login);
     }
 }

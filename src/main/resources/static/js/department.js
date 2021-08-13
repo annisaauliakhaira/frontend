@@ -2,11 +2,14 @@
 var department = {};
 var depId;
 
+console.log(getToken());
+
 $(document).ready(function () {
     $('#table_department').DataTable({
         ajax : {
-            url : 'department/get-all',
-            dataSrc : ''
+            url : 'http://localhost:8081/department',
+            dataSrc : '',
+            beforeSend: addRequestHeader()
         },
         "columns": [
             {
@@ -49,6 +52,9 @@ function getById(id) {
             depId = id;
             department.name = data.name;
             setForm();
+        },
+        error: function (request, error){
+            alert("Can't Do Because : " + error)
         }
     });
 }
@@ -98,6 +104,9 @@ function submit() {
                     success: (data) => {
                         success('department created');
                         $('#table_department').DataTable().ajax.reload(null, false);
+                    },
+                    error: function (request, error){
+                        alert("Can't Do Because : "+error)
                     }
                 });
             }

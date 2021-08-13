@@ -5,7 +5,8 @@ $(document).ready(function () {
     $('#table_project').DataTable({
         ajax : {
             url : 'http://localhost:8081/project',
-            dataSrc : ''
+            dataSrc : '',
+            beforeSend : addRequestHeader()
         },
         "columns": [
             {
